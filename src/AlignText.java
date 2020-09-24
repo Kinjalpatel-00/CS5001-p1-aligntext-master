@@ -78,16 +78,14 @@
                      }
                 }
 
-         addSpaces(result, (maximumLineLength - (lineCapacity + wordsPerLine.size() - 1) ),maximumLineLength);
+                addSpaces(result, (maximumLineLength - (lineCapacity + wordsPerLine.size() - 1) ),maximumLineLength);
 
-                        for(int j = 0 ; j < wordsPerLine.size() ; j++){
-                            result.append(wordsPerLine.get(j));
-                            if(wordsPerLine.size() - 1 != j){
-
-                                result.append(" ");
-                            }
-                        }
-
+                for(int j = 0 ; j < wordsPerLine.size() ; j++){
+                    result.append(wordsPerLine.get(j));
+                    if(wordsPerLine.size() - 1 != j){
+                        result.append(" ");
+                    }
+                }
                 return result.toString();
             }
 
