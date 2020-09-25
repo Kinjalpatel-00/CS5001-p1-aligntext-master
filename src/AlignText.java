@@ -8,6 +8,7 @@
      */
 
     import java.util.*;
+
     public class AlignText {
 
         public static void addSpaces(StringBuffer text , int leftover, int maximumLineLength){
@@ -17,131 +18,90 @@
             }
         }
 
-//     //add space will add the spac anad below on will have different aligment type and do its task : withh be
-//         public static String leftAlignment(String input, int maximumLineLength, String alignment) {
-//             String[] tokens = input.split("\\s+");
-//             StringBuffer result = new StringBuffer(input.length());
-//             //Total words length per line
-//             int lineCapacity = 0;
-//             for(int i = 0 ; i < tokens.length ; i++){
-//                 String eachWord = tokens[i] + ' ';
-//                 int eachWordLength = eachWord.length();
-//                 int leftover = 0;
-//                 if( ( lineCapacity + eachWordLength ) > maximumLineLength){
-//                     leftover = maximumLineLength - lineCapacity;
-//
-//                     addSpaces(result, leftover, maximumLineLength);
-//
-//                     result.append("\n");
-//
-//                     System.out.println("Leftover: "+leftover);
-//                     //reseting the line capacity to 0. in order to start from next line
-//                     lineCapacity = 0;
-//                     leftover = 0;
-//                 }
-//                 result.append(eachWord);
-//                 lineCapacity += eachWord.length();
-//             }
-//             return result.toString();
-//         }
-//
+        public static StringBuffer addSpacesToAlignmentType(StringBuffer result,int maximumLineLength, String alignmentType, int lineCapacity,ArrayList<String> wordsPerLine  ){
+            if(alignmentType.equals("L")){
+               addSpaces(result, 0, maximumLineLength);
+           }
+           else if(alignmentType.equals("R")){
+              addSpaces(result, (maximumLineLength - (lineCapacity + wordsPerLine.size() - 1) ),maximumLineLength);
+          }
+//               else if(args[2].equals("C")){
+//                    System.out.println("C");
+//               }
+//               else if(args[2].equals("B")){
+//                     System.out.println("B");
+//               }
+          else{
+              System.out.println("usage: java AlignText file_name line_length [align_mode]");
+          }
 
-            public static String alignment(String input, int maximumLineLength, String alignmentType) {
-                String[] tokens = input.split("\\s+");
-                StringBuffer result = new StringBuffer(input.length());
+          return result;
+      }
+
+      public static String alignment(String input, int maximumLineLength, String alignmentType) {
+          String[] tokens = input.split("\\s+");
+          StringBuffer result = new StringBuffer(input.length());
                 //Total words length per line
-                int lineCapacity = 0;
-                ArrayList<String> wordsPerLine = new ArrayList<String>(200);
+          int lineCapacity = 0;
+          ArrayList<String> wordsPerLine = new ArrayList<String>(200);
 
-                for(int i = 0 ; i < tokens.length ; i++) {
-                    String eachWord = tokens[i];
-                    int eachWordLength = eachWord.length();
+          for(int i = 0 ; i < tokens.length ; i++) {
+              String eachWord = tokens[i];
+              int eachWordLength = eachWord.length();
 
-                    if ((lineCapacity + wordsPerLine.size() - 1 + eachWordLength) < maximumLineLength) {
-                        wordsPerLine.add(eachWord);
-                        lineCapacity += eachWordLength; //6 + wordsPerLine.length() - 1
-                    }
+              if ((lineCapacity + wordsPerLine.size() - 1 + eachWordLength) < maximumLineLength) {
+                  wordsPerLine.add(eachWord);
+                  lineCapacity += eachWordLength; //6 + wordsPerLine.length() - 1
+              }
 
-                    else{
-                         if(alignmentType.equals("L")){
-                            addSpaces(result, 0, maximumLineLength);
-                         }
-                         else if(alignmentType.equals("R")){
-                             addSpaces(result, (maximumLineLength - (lineCapacity + wordsPerLine.size() - 1) ),maximumLineLength);
-                         }
-//                         else if(args[2].equals("C")){
-//                              System.out.println("C");
-//                         }
-//                         else if(args[2].equals("B")){
-//                                ystem.out.println("B");
-//                          }
-                         else{
-                               System.out.println("usage: java AlignText file_name linelength [align_mode]");
-                         }
-
-
-
-                        for(int j = 0 ; j < wordsPerLine.size() ; j++){
-                            result.append(wordsPerLine.get(j));
-                            if(wordsPerLine.size() - 1 == j){
-                                result.append('\n');
-                            }
-                            else{
-                                result.append(" ");
-                            }
-                        }
+              else{
+                  addSpacesToAlignmentType(result, maximumLineLength, alignmentType, lineCapacity,wordsPerLine);
+                  for(int j = 0 ; j < wordsPerLine.size() ; j++){
+                      result.append(wordsPerLine.get(j));
+                          if(wordsPerLine.size() - 1 == j){
+                              result.append('\n');
+                          }
+                          else{
+                              result.append(" ");
+                          }
+                  }
                         lineCapacity = eachWordLength;
                         wordsPerLine.clear();
                         wordsPerLine.add(eachWord);
-                     }
-                }
+                  }
+              }
 
-                  if(alignmentType.equals("L")){
-                            addSpaces(result, 0, maximumLineLength);
-                         }
-                         else if(alignmentType.equals("R")){
-                             addSpaces(result, (maximumLineLength - (lineCapacity + wordsPerLine.size() - 1) ),maximumLineLength);
-                         }
-//                         else if(args[2].equals("C")){
-//                              System.out.println("C");
-//                         }
-//                         else if(args[2].equals("B")){
-//                                ystem.out.println("B");
-//                          }
-                         else{
-                               System.out.println("usage: java AlignText file_name linelength [align_mode]");
-                         }
+              addSpacesToAlignmentType(result, maximumLineLength, alignmentType, lineCapacity,wordsPerLine);
 
-                for(int j = 0 ; j < wordsPerLine.size() ; j++){
-                    result.append(wordsPerLine.get(j));
-                    if(wordsPerLine.size() - 1 != j){
-                        result.append(" ");
-                    }
-                }
-                return result.toString();
-            }
+              for(int j = 0 ; j < wordsPerLine.size() ; j++){
+                  result.append(wordsPerLine.get(j));
+                  if(wordsPerLine.size() - 1 != j){
+                      result.append(" ");
+                  }
+              }
+              return result.toString();
+          }
 
-        public static void main(String[] args) {
-            try{
-                int setLineLength = Integer.parseInt(args[1]);
-                String[] paragraphs = FileUtil.readFile(args[0]);
-                String alignment = "L";
-                if(args.length == 3) { alignment = args[2]; }
-
-                if(args.length > 1 ){
-                     for(int i = 0; i < paragraphs.length ; i++){
+          public static void main(String[] args){
+              try{
+                  if( args.length < 2 || Integer.parseInt(args[1]) < 0 ){
+                      System.out.println("usage: java AlignText file_name line_length [align_mode]");
+                  }
+                  else{
+                      int setLineLength = Integer.parseInt(args[1]);
+                      String[] paragraphs = FileUtil.readFile(args[0]);
+                      String alignment = "L";
+                      if(args.length == 3) { alignment = args[2]; }
+                      for(int i = 0; i < paragraphs.length ; i++){
                           System.out.println(alignment(paragraphs[i], setLineLength, alignment));
-                     }
-                }
-                else{
-                    System.out.println("usage: java AlignText file_name linelength");
-                }
-            }
-            catch(Exception e ){
-                System.out.print("Error: " + e);
-            }
-            finally{
-                System.exit(0);
-            }
-        }
-    }
+                      }
+                  }
+              }
+              catch(Exception e ){
+                  System.out.print("Error: XYZZ "+e+"\n");
+              }
+              finally{
+                  System.exit(0);
+              }
+          }
+      }
