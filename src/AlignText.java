@@ -1,14 +1,14 @@
+import java.util.ArrayList;
+
 /**
-* CS5001 - Object Oriented Modelling, Design and Programming A Precital 1 -
-* AlignText programe implements a application which does left and right alignments
+* CS5001 - Object Oriented Modelling, Design and Programming A Practical 1 - Aligntext
+* AlignText programme implements a application which does left and right alignments
 * for given text file. Output will be displayed on console.
 * @param args[0] - Text file name and location
 * @param args[1] - The length of the line for wrapping the text
 * @param args[2] - Alignment type (optional)
 * @author Student id number: 200028225
 */
-
-import java.util.ArrayList;
 
 public class AlignText {
     public static void addSpaces(StringBuffer text, int leftover, int maximumLineLength) {
