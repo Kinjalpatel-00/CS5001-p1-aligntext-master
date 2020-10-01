@@ -2,18 +2,18 @@
 import java.util.ArrayList;
 
 /**
-* Course: CS5001 - (Object Oriented Modelling, Design and Programming) Practical 1 - Aligntext
-* AlignText programme implements a application which does left and right alignments
+* Course: CS5001 - (Object Oriented Modelling, Design and Programming) Practical 1 - Aligntext.
+* AlignText programme implements a application which does left and right alignments.
 * for given text file. Output will be displayed on console.
-* @author Student id number: 200028225
+* @author Student id number: 200028225.
 */
 
 public class AlignText {
     /**
-     * This method adds the 'leftover' number of spaces to the text(per line)
+     * This method adds the 'leftover' number of spaces to the text(per line) at beginning of the line.
      * @param text - The StringBuffer for the words to store the final output.
-     * @param leftover - The number of free character space in each line after adding words
-     * @param maximumLineLength - The desired length of the line for wrapping the text
+     * @param leftover - The number of free character space in each line after adding words.
+     * @param maximumLineLength - The desired length of the line for wrapping the text.
      */
     public static void addSpaces(StringBuffer text, int leftover, int maximumLineLength) {
         if (leftover > 0 && leftover < maximumLineLength) {
@@ -23,13 +23,13 @@ public class AlignText {
     }
 
     /**
-     * This method calls the addSpaces() method based on different alignment types
-     * @param result - the StringBuffer to store the final output
-     * @param maximumLineLength - The desired length of the line for wrapping the text
-     * @param alignmentType - The alignment type (given by user as command line argument) as string
-     * @param lineCapacity - The capacity of the line to stores the words
-     * @param wordsPerLine -  Total words per line stored in ArrayList
-     * @return - returns the aligned rext
+     * This method calls the addSpaces() method based on different alignment types.
+     * @param result - the StringBuffer to store the final output.
+     * @param maximumLineLength - The desired length of the line for wrapping the text.
+     * @param alignmentType - The alignment type (given by user as command line argument) as string.
+     * @param lineCapacity - The capacity of the line to stores the words.
+     * @param wordsPerLine -  Total words per line stored in ArrayList.
+     * @return - Returns the text with added spaces to them
      */
     public static StringBuffer addSpacesToAlignmentType(StringBuffer result, int maximumLineLength, String alignmentType, int lineCapacity, ArrayList<String> wordsPerLine) {
         if (alignmentType.equals("L")) {
@@ -51,11 +51,11 @@ public class AlignText {
     }
 
     /**
-     * This method does the calculation based on provided input and returns the alignmed text as a string
-     * @param input - The each sentance from the user input text file
-     * @param maximumLineLength - The desired length of the line for wrapping the text
-     * @param alignmentType - The type of aligment as string
-     * @return - retuns the output (given by user as command line argument) as string
+     * This method does the calculation based on provided input and returns the aligned text as a string.
+     * @param input - The each sentence from the user input text file.
+     * @param maximumLineLength - The desired length of the line for wrapping the text.
+     * @param alignmentType - The type of alignment (given by user as command line argument) as string.
+     * @return - Returns the output as string.
      */
     public static String alignment(String input, int maximumLineLength, String alignmentType) {
          String[] tokens = input.split("\\s+");
@@ -92,8 +92,6 @@ public class AlignText {
                   wordsPerLine.add(eachWord);
                   }
               }
-
-
               addSpacesToAlignmentType(result, maximumLineLength, alignmentType, lineCapacity, wordsPerLine);
               for (int j = 0; j < wordsPerLine.size(); j++) {
                   result.append(wordsPerLine.get(j));
@@ -105,14 +103,13 @@ public class AlignText {
          }
 
     /**
-     * This is the main method of the program
-     * This method takes the input from command line
-     * Calls the alignment() method and prints the results to the console
-     * @param args - The list of all command line agruments provided by the user
-     * @param args[0] - Text file name and location
-     * @param args[1] - The length of the line for wrapping the text
-     * @param args[2] - Alignment type (optional)
-     * @return Nothing
+     * This is the main method of the program.
+     * This method takes the input from command line.
+     * Calls the alignment() method and prints the results to the console.
+     * @param args - The list of all command line arguments provided by the user.
+     * args[0] - Text file name and location.
+     * args[1] - The length of the line for wrapping the text.
+     * args[2] - Alignment type (optional).
      */
     public static void main(String[] args) {
          final int argsLength = 3;
@@ -126,11 +123,12 @@ public class AlignText {
 
                    //setting the default alignment
                    String alignment = "L";
+
                    if (args.length == argsLength) {
                         alignment = args[2];
                    }
 
-                   // loop to go throught the each sentance from textfile and prints the results to the console
+                   // loop to go through the each sentence from text file and prints the results to the console
                    for (int i = 0; i < paragraphs.length; i++) {
                         System.out.println(alignment(paragraphs[i], setLineLength, alignment));
                    }
